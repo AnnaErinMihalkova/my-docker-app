@@ -1,3 +1,142 @@
-docker build -t todo .
+README
+ Todo Application
 
-docker run -d -p 8000:8000 --name todo todo
+This project is a simple Django-based Todo List application designed to allow users to create, edit, delete, and view their todo items. It uses Django
+, Bootstrap , and supports deployment in a Dockerized environment.
+
+ Features
+
+1. Add Todos: Users can add new todo items.
+2. Edit Todos: Users can modify existing items.
+3. Delete Todos: Items can be removed from the list.
+4. Responsive Design: Built with Bootstrap for seamless display across devices.
+
+
+File Structure
+
+ `todo/`
+
+1. `migrations/0001_initial.py`
+   - Database migration script for creating the `Item` model with a `content` field.
+
+2. `templates/todolist.html`
+   - HTML template for rendering the todo list using Django template syntax.
+   - Includes form handling for adding and editing items.
+   - Leverages **Bootstrap** for styling and responsive UI.
+
+3. `asgi.py`
+   - Entry point for ASGI-based deployments.
+   - Sets the Django settings module and exposes the ASGI application callable.
+
+4. `models.py`
+   - Defines the `Item` model, which stores todo list items with a `content` field.
+
+5. `settings.py`
+   - Configuration file for the Django project.
+   - Contains settings for:
+     - Installed apps
+     - Middleware
+     - Database (SQLite)
+     - Static files
+     - Internationalization
+     - Secret keys and debugging
+     - Allowed hosts.
+
+6. `urls.py`
+   - URL routing configuration.
+   - Includes paths for viewing, adding, editing, and deleting todo items.
+
+7. `views.py`
+   - Contains the logic for handling various requests:
+     - `TodoAppView`: Displays the list of todos.
+     - `AddTodo`: Adds new todo items.
+     - `DeleteTodo`: Deletes specific items.
+     - `EditTodo`: Loads the editing form for a specific item.
+     - `UpdateTodoItem`: Updates an item's content.
+
+ 8. `wsgi.py`
+   - Entry point for WSGI-based deployments.
+   - Sets the Django settings module and exposes the WSGI application callable.
+
+ Deployment Files
+
+ 1. `Dockerfile`
+   - Defines a Docker image for the project:
+     - Uses Python 3.10 base image.
+     - Installs dependencies from `requirements.txt`.
+     - Sets up migrations and static file collection.
+     - Exposes port `8000`.
+     - Runs the development server.
+
+2. `docker-compose.yaml`
+   - Simplifies multi-container orchestration.
+   - Maps port `8000` of the container to the host.
+   - Mounts the project directory as a volume for live updates.
+
+ 3. `manage.py`
+   - Django's CLI tool for administrative tasks like running the server, applying migrations, and managing apps.
+
+4. `requirements.txt`
+   - Lists Python dependencies for the project (to be filled as needed).
+
+ Getting Started
+
+Prerequisites
+
+- Python 3.10+
+- Docker and Docker Compose
+
+Installation
+
+1. Clone the Repository:
+   ```bash
+   git clone <repository-url>
+   cd todo
+   ```
+
+2. Install Dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run Migrations:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+4. Run the Development Server:
+   ```bash
+   python manage.py runserver
+   ```
+
+ Docker Deployment
+
+1. Build the Docker Image:
+   ```bash
+   docker-compose build
+   ```
+
+2. Run the Application:
+   ```bash
+   docker-compose up
+   ```
+
+3. Access the app at `http://localhost:8000`.
+
+Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-name`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push the branch (`git push origin feature-name`).
+5. Open a Pull Request.
+
+
+
+
+## Acknowledgments
+
+- [Django Documentation](https://docs.djangoproject.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Docker Documentation](https://docs.docker.com/)
